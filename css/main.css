@@ -4,3 +4,24 @@
 body {
     background-color: #52accc;
 }
+
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9999;
+  background-color: #181c22;
+}
+
+ul {
+  margin: 0;
+  padding: 0.5em;
+}
+
+li {
+  display: inline;
+  padding: 0.5em;
+  font-size: 16px;
+  font-variant: small-caps;
+}
