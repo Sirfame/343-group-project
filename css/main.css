@@ -1,5 +1,6 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
 
 body {
     background-color: #52accc;
@@ -12,6 +13,7 @@ nav {
   right: 0px;
   z-index: 9999;
   background-color: #181c22;
+  background-position: top;
 }
 
 ul {
@@ -24,4 +26,20 @@ li {
   padding: 0.5em;
   font-size: 16px;
   font-variant: small-caps;
+}
+
+#title {
+  color: white;
+  text-align: center;
+  font-family: Pacifico;
+  font-size: 5em;
+  padding: .5em;
+}
+
+div#homeContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) }
 }

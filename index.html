@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="VocabApp">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,15 +24,18 @@
       </nav>
     </header>
 
-    <main>
-    </main>
+    <div class="container-fluid">
+      <main>
+        <div ui-view></div>
+      </main>
+    </div>
 
     <footer>
     </footer>
 
     <!-- load external libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <!-- <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script> -->
+    <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.js"></script>
 
   	<!-- load our script -->
