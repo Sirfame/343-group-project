@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css"/> <!-- includes bootstrap -->
+    <link rel="icon" type="image/png" href="img/orange_check.jpg">
 
     <!-- load angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 
-    <title>343</title>
+    <title>Vocabulary Thing</title>
   </head>
 
   <body>
     <header>
       <nav>
         <ul>
-          <li><a ui-sref="home">temp</a></li>
-          <li><a ui-sref="something">temp</a></li>
-          <li><a ui-sref="something">temp</a></li>
-          <li><a ui-sref="something">temp</a></li>
-          <li><a ui-sref="something">temp</a></li>
+          <li><a ui-sref="home"><i class="fa fa-home fa-lg"></i></a></li>
         </ul>
       </nav>
     </header>
 
-    <div class="container-fluid">
+    <div class="container" id="bodyDiv">
       <main>
         <div ui-view></div>
       </main>
