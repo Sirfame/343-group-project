@@ -1,5 +1,8 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300italic,300);
 
 body {
     background-color: #52accc;
@@ -12,6 +15,7 @@ nav {
   right: 0px;
   z-index: 9999;
   background-color: #181c22;
+  background-position: top;
 }
 
 ul {
@@ -24,4 +28,39 @@ li {
   padding: 0.5em;
   font-size: 16px;
   font-variant: small-caps;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.container {
+  padding: 1em;
+}
+
+#bodyDiv {
+  padding-top: 5em;
+}
+
+.title {
+  color: white;
+  font-family: Pacifico, 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;;
+  font-size: 1.5em;
+}
+
+#title {
+  color: white;
+  text-align: center;
+  font-family: Pacifico, 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;;
+  font-size: 5em;
+  padding: .5em;
+}
+
+div#homeContainer {
+  position: absolute;
+  top: 30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
