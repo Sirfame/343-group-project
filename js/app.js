@@ -101,7 +101,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		return Auth.$authWithPassword({
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
-  	})
+  		})
 	};
 	// End signIn
 
