@@ -1,4 +1,4 @@
-<div class="animated fadeIn">  
+<div class="animated fadeIn" ng-show="!userId">
   <div class="container">
     <h1 class="text-center">Sign Up With <span class="title">Vocabulary Thing!</span></h1>
   </div>
@@ -52,8 +52,8 @@
         </div>
       </div>
 
-      <div class="help-block col-sm-offset-2">
-        <span>* = required</span>
+      <div class="help-block col-sm-offset-2" ng-show="userForm.$invalid">
+        <span>* required</span>
       </div>
 
       <div class="form-group">

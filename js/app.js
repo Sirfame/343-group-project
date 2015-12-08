@@ -26,7 +26,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		.state('dashboard', {
 			url: '/dashboard',
 			templateUrl: 'partials/dashboard.html',
-			controller: 'DashboardCtrl'
+			controller: 'LoginCtrl'
 		})
 })
 
@@ -36,7 +36,11 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://vocabularything.firebaseio.com/");
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> master
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
 
@@ -50,9 +54,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 	var Auth = $firebaseAuth(ref);
 
 	$scope.signUp = function() {
-		console.log("creating user " + $scope.newUser.email);
-
-		//pass in an object with the new 'email' and 'password'
+		//Create user
 		Auth.$createUser({
 			'email': $scope.newUser.email,
 			'password': $scope.newUser.password
@@ -62,8 +64,9 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		.then($scope.signIn)
 
 		// Once logged in, set and save the user data
-		.then(function(authData){
+		.then(function(authData) {
 			console.log("logged in");
+
 			var newUserInfo = {
 				'firstname': $scope.newUser.firstname,
 	    		'lastname': $scope.newUser.lastname,
@@ -71,13 +74,18 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 
 			$scope.users[authData.uid] = newUserInfo;
 
+			$scope.userId = authData.uid; //save userId
+			$scope.users[authData.uid] = { //set up new information in our users object
+				firstname: $scope.newUser.firstname,
+	    	lastname: $scope.newUser.lastname,
+			}
+			//$scope.users[authData.uid] = newUserInfo;
 			/* assign authData.uid to $scope.userId for our views to see */
-			$scope.userId = authData.uid;
-
+			//$scope.userId = authData.uid;
 			/* call .$save() on the $scope.users object to save to the cloud */
 			$scope.users.$save();
-
 		})
+
 		//Catch any errors
 		.catch(function(error){
 			//error handling (called on the promise)
@@ -102,6 +110,12 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
   		})
+  	})
+
+		//Catch any errors
+		.catch(function(error) {
+			console.log(error);
+		})
 	};
 	// End signIn
 
