@@ -13,23 +13,26 @@
     <title>Vocabulary Thing</title>
   </head>
 
-  <body>
+  <body ng-controller="LoginCtrl">
     <header>
       <nav>
         <ul>
           <li><a ui-sref="home"><i class="fa fa-home fa-lg"></i></a></li>
-          <li><a ui-sref="dashboard">Dashboard</a></li>
+          <li ng-show="userId"><a ui-sref="dashboard">Dashboard</a></li>
+          <li>
+            <div class="logout" ng-if="userId">
+              <span>Placeholder Text</span>
+              <button ng-click="logOut()" class="btn btn-warning">Logout</button>
+            </div>
+          </li>
         </ul>
-        <div class="logout" ng-if="userId">
-          <span>Placeholder Text</span>
-          <button ng-click="logOut()" class="btn btn-warning">Logout</button>
-        </div>
       </nav>
     </header>
 
     <div class="container" id="bodyDiv">
       <main>
         <div ui-view></div>
+        <div ng-show="userId">sdfdsf<div>
       </main>
     </div>
 
