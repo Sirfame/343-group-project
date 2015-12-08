@@ -26,7 +26,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		.state('dashboard', {
 			url: '/dashboard',
 			templateUrl: 'partials/dashboard.html',
-			controller: 'DashboardCtrl'
+			controller: 'LoginCtrl'
 		})
 })
 
@@ -72,7 +72,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 			/* call .$save() on the $scope.users object to save to the cloud */
 			$scope.users.$save();
 		})
-		
+
 		//Catch any errors
 		.catch(function(error){
 			//error handling (called on the promise)
@@ -88,6 +88,11 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
   	})
+
+		//Catch any errors
+		.catch(function(error) {
+			console.log(error);
+		})
 	};
 	// End signIn
 
