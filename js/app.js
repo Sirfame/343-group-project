@@ -5,7 +5,7 @@ window.onload = function() {
 };
 
 angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
 		.state('home', {
@@ -30,11 +30,12 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		})
 })
 
+
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth','$location', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $location) {
 
 	/* define reference to your firebase app */
-	var ref = new Firebase("https://343.firebaseio.com/");
+	var ref = new Firebase("https://vocabularything.firebaseio.com/");
 
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
@@ -70,8 +71,6 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 
 			$scope.users[authData.uid] = newUserInfo;
 
-
-
 			/* assign authData.uid to $scope.userId for our views to see */
 			$scope.userId = authData.uid;
 
@@ -84,6 +83,15 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 			//error handling (called on the promise)
 			console.log(error);
 		})
+
+		//$scope.$apply(function() { 
+		//	$location.path('partials/dashboard.html');
+		//});
+
+		//$location.path('partials/dashboard');
+
+		//$window.location.href = 'partials/dashboard.html';
+
 	};
 	// End signUp
 
