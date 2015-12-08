@@ -19,12 +19,10 @@
         <ul>
           <li><a ui-sref="home"><i class="fa fa-home fa-lg"></i></a></li>
           <li ng-show="userId"><a ui-sref="dashboard">Dashboard</a></li>
-          <li>
-            <div class="logout" ng-if="userId">
-              <span>Placeholder Text</span>
-              <button ng-click="logOut()" class="btn btn-warning">Logout</button>
-            </div>
-          </li>
+            <li class="logout" ng-if="userId">
+              <span>Placeholder Text</span> 
+              <button id="logbtn" ng-click="logOut()" class="btn btn-warning">Logout</button>
+            </li>
         </ul>
       </nav>
     </header>
