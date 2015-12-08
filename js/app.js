@@ -32,9 +32,9 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 
 // Controls the homepage and login/signup screens
 .controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
-	
+
 	/* define reference to your firebase app */
-	var ref = new Firebase("https://343-group-project.firebaseio.com/");
+	var ref = new Firebase("https://343.firebaseio.com/");
 
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
@@ -42,31 +42,27 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 	/* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
 	$scope.users = $firebaseObject(usersRef);
 
-	var Auth = $firebaseAuth(ref);
-
+	//for sign-in
 	$scope.newUser = {};
+
+	/* Authentication */
+	var Auth = $firebaseAuth(ref);
 
 	$scope.signUp = function() {
 		console.log("creating user " + $scope.newUser.email);
-		
+
 		//pass in an object with the new 'email' and 'password'
 		Auth.$createUser({
 			'email': $scope.newUser.email,
 			'password': $scope.newUser.password
 		})
+
+		// Once the user is created, call the logIn function
 		.then($scope.signIn)
+
+		// Once logged in, set and save the user data
 		.then(function(authData){
-
-			/* values in JSON (and Firebase) cannot be undefined.
-			if newUser.avatar is undefined, assign "img/no-pic.png" to it */
-			
-			// if($scope.newUser.avatar === undefined){
-			// 	$scope.newUser.avatar = "img/no-pic.png";
-			// }
-
-			/* create an object with the 'handle' and 'avatar' of the newUser
-			assign this object to the value in the $scope.users object
-			with key of authData.uid (the user id of whoever is logged in) */
+			console.log("logged in");
 			var newUserInfo = {
 				'firstname': $scope.newUser.firstname,
 	    		'lastname': $scope.newUser.lastname,
@@ -74,29 +70,30 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 
 			$scope.users[authData.uid] = newUserInfo;
 
-			/* call .$save() on the $scope.users object to save to the cloud */
-				$scope.users.$save();
+
 
 			/* assign authData.uid to $scope.userId for our views to see */
-				$scope.userId = authData.uid;
+			$scope.userId = authData.uid;
+
+			/* call .$save() on the $scope.users object to save to the cloud */
+			$scope.users.$save();
 
 		})
+		//Catch any errors
 		.catch(function(error){
 			//error handling (called on the promise)
 			console.log(error);
 		})
-
-	}; 
+	};
 	// End signUp
 
+	//LogIn function
 	$scope.signIn = function() {
-		
-		var promise = Auth.$authWithPassword({
-	    	'email': $scope.newUser.email,
-	    	'password': $scope.newUser.password
-  		});
-
-		return promise;
+		console.log('log in')
+		return Auth.$authWithPassword({
+	    	email: $scope.newUser.email,
+	    	password: $scope.newUser.password
+  	})
 	};
 	// End signIn
 
