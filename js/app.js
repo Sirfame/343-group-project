@@ -34,7 +34,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 .controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
 
 	/* define reference to your firebase app */
-	var ref = new Firebase("https://343.firebaseio.com/");
+	var ref = new Firebase("https://vocabularything.firebaseio.com/");
 	
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
