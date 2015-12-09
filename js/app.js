@@ -17,7 +17,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		.state('signUp', {
 			url:'/sign-up',
 			templateUrl: 'partials/signUp.html',
-			controller: 'LoginCtrl' 
+			controller: 'LoginCtrl'
 		})
 		.state('dashboard', {
 			url: '/dashboard',
@@ -32,11 +32,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 })
 
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', '$state', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $state) {
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://343.firebaseio.com/");
-
+	
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
 
@@ -72,6 +72,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			//$scope.userId = authData.uid;
 			/* call .$save() on the $scope.users object to save to the cloud */
 			$scope.users.$save();
+			$state.go('dashboard', {});
 		})
 
 		//Catch any errors
@@ -88,7 +89,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		return Auth.$authWithPassword({
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
-  	})
+  		})
+
+  		.then(function() {
+  			$state.go('dashboard', {});
+  		})
 
 		//Catch any errors
 		.catch(function(error) {
