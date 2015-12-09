@@ -19,7 +19,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		.state('signUp', {
 			url:'/sign-up',
 			templateUrl: 'partials/signUp.html',
-			controller: 'LoginCtrl'
+			controller: 'LoginCtrl' 
 		})
 		.state('dashboard', {
 			url: '/dashboard',
@@ -38,7 +38,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://343.firebaseio.com/");
-	
+
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
 
