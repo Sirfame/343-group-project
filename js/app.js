@@ -1,7 +1,5 @@
 'use-strict';
 
-var quiz = jQuery('#quiz').quiz('1P09Q9dEC7ugc_J3xwPhF3EoFgKZFIH-F5W1FR_e8sdM');
-
 var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -34,7 +32,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 })
 
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', '$state', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $state) {
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://343.firebaseio.com/");
@@ -47,6 +45,9 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 
 	//for sign-in
 	$scope.newUser = {};
+
+	$scope.signUpState = false;
+	$scope.signInState = false;
 
 	/* Authentication */
 	var Auth = $firebaseAuth(ref);
@@ -74,6 +75,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			//$scope.userId = authData.uid;
 			/* call .$save() on the $scope.users object to save to the cloud */
 			$scope.users.$save();
+			$state.go('dashboard', {});
 		})
 
 		//Catch any errors
@@ -90,7 +92,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		return Auth.$authWithPassword({
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
-  	})
+  		})
+
+  		.then(function() {
+  			$state.go('dashboard', {});
+  		})
 
 		//Catch any errors
 		.catch(function(error) {
@@ -98,6 +104,27 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		})
 	};
 	// End signIn
+
+	$scope.getInclude = function(){
+	    if($scope.signInState == true){
+	        return "partials/signIn.html";
+	    } else if($scope.signUpState == true) {
+	    	return "partials/signUp.html";
+	    }
+	    return "partials/home.html";
+	}
+
+	$scope.changeSignUpState = function(){
+		if($scope.signUpState == false) {
+			$scope.signUpState = true;
+		}
+	}
+
+	$scope.changeSignInState = function(){
+		if($scope.signInState == false) {
+			$scope.signInState = true;
+		}
+	}
 
 	//Make LogOut function available to views
 	$scope.logOut = function() {
