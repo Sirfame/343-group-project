@@ -1,7 +1,5 @@
 'use-strict';
 
-var quiz = jQuery('#quiz').quiz('1P09Q9dEC7ugc_J3xwPhF3EoFgKZFIH-F5W1FR_e8sdM');
-
 var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
