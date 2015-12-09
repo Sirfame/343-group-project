@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/animate.css"> <!-- CSS animations -->
     <link rel="stylesheet" href="css/main.css"/> <!-- includes bootstrap -->
-    <link href="css/style.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="icon" type="image/png" href="img/orange_check.jpg">
 
     <!-- load angular -->
@@ -22,19 +21,19 @@
         <ul>
           <li><a ui-sref="home"><i class="fa fa-home fa-lg"></i></a></li>
           <li ng-show="userId"><a ui-sref="dashboard">Dashboard</a></li>
-            <li class="logout" ng-if="userId">
-              <span>Placeholder Text</span> 
-              <button id="logbtn" ng-click="logOut()" class="btn btn-warning">Logout</button>
-            </li>
+          <li>
+            <div class="logout" ng-if="userId">
+              <span>Placeholder Text</span>
+              <button ng-click="logOut()" ui-sref="home" class="btn btn-warning">Logout</button>
+            </div>
+          </li>
         </ul>
       </nav>
     </header>
 
     <div class="container" id="bodyDiv">
       <main>
-
         <div ui-view></div>
-
       </main>
     </div>
 
