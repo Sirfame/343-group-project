@@ -46,9 +46,6 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 	//for sign-in
 	$scope.newUser = {};
 
-	$scope.signUpState = false;
-	$scope.signInState = false;
-
 	/* Authentication */
 	var Auth = $firebaseAuth(ref);
 
@@ -104,27 +101,6 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		})
 	};
 	// End signIn
-
-	$scope.getInclude = function(){
-	    if($scope.signInState == true){
-	        return "partials/signIn.html";
-	    } else if($scope.signUpState == true) {
-	    	return "partials/signUp.html";
-	    }
-	    return "partials/home.html";
-	}
-
-	$scope.changeSignUpState = function(){
-		if($scope.signUpState == false) {
-			$scope.signUpState = true;
-		}
-	}
-
-	$scope.changeSignInState = function(){
-		if($scope.signInState == false) {
-			$scope.signInState = true;
-		}
-	}
 
 	//Make LogOut function available to views
 	$scope.logOut = function() {
