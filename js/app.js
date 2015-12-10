@@ -106,7 +106,7 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
   		})
-  	})
+  	};
 
 		//Catch any errors
 		.catch(function(error) {
