@@ -1,10 +1,6 @@
 'use-strict';
-
-window.onload = function() {
-
-};
-
-angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
+var progress = 0;
+var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 	$stateProvider
@@ -28,14 +24,20 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 			templateUrl: 'partials/dashboard.html',
 			controller: 'LoginCtrl'
 		})
+		.state('quiz', {
+			url: '/quiz',
+			templateUrl: 'partials/quiz.html',
+			controller: 'LoginCtrl'
+		})
 })
 
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', '$state', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $state) {
 
 	/* define reference to your firebase app */
-	var ref = new Firebase("https://vocabularything.firebaseio.com/");
-	
+
+	var ref = new Firebase("https://343.firebaseio.com/");
+
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
 
@@ -78,6 +80,8 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 			//error handling (called on the promise)
 			console.log(error);
 		})
+
+		$state.go('dashboard', {});
 	};
 	// End signUp
 
@@ -87,12 +91,14 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
 		return Auth.$authWithPassword({
 	    	email: $scope.newUser.email,
 	    	password: $scope.newUser.password
-  	})
+  		})
 
 		//Catch any errors
 		.catch(function(error) {
 			console.log(error);
 		})
+
+		$state.go('dashboard', {});
 	};
 	// End signIn
 
@@ -145,4 +151,101 @@ angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase
             });
         }
     };
+})
+
+.directive('quiz', function(quizFactory) {
+	return {
+		restrict: 'AE',
+		scope: {},
+		templateUrl: 'template.html',
+		link: function(scope, elem, attrs) {
+			scope.start = function() {
+				scope.id = 0;
+				scope.quizOver = false;
+				scope.inProgress = true;
+				scope.getQuestion();
+			};
+
+			scope.reset = function() {
+				scope.inProgress = false;
+				scope.score = 0;
+				progress = 0;
+			}
+
+			scope.getQuestion = function() {
+				var q = quizFactory.getQuestion(scope.id);
+				if(q) {
+					scope.question = q.question;
+					scope.options = q.options;
+					scope.answer = q.answer;
+					scope.answerMode = true;
+				} else {
+					scope.quizOver = true;
+				}
+			};
+
+			scope.checkAnswer = function() {
+				if(!$('input[name=answer]:checked').length) return;
+
+				var ans = $('input[name=answer]:checked').val();
+
+				if(ans == scope.options[scope.answer]) {
+					scope.score++;
+					scope.correctAns = true;
+				} else {
+					scope.correctAns = false;
+				}
+				progress++;
+				console.log(progress);
+				scope.answerMode = false;
+			};
+
+			scope.nextQuestion = function() {
+				scope.id++;
+				scope.getQuestion();
+			}
+
+			scope.reset();
+		}
+	}
+});
+
+app.factory('quizFactory', function() {
+	var questions = [
+		{
+			question: "Which is the largest country in the world by population?",
+			options: ["India", "USA", "China", "Russia"],
+			answer: 2
+		},
+		{
+			question: "When did the second world war end?",
+			options: ["1945", "1939", "1944", "1942"],
+			answer: 0
+		},
+		{
+			question: "Which was the first country to issue paper currency?",
+			options: ["USA", "France", "Italy", "China"],
+			answer: 3
+		},
+		{
+			question: "Which city hosted the 1996 Summer Olympics?",
+			options: ["Atlanta", "Sydney", "Athens", "Beijing"],
+			answer: 0
+		},
+		{
+			question: "Who invented telephone?",
+			options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
+			answer: 1
+		}
+	];
+
+	return {
+		getQuestion: function(id) {
+			if(id < questions.length) {
+				return questions[id];
+			} else {
+				return false;
+			}
+		}
+	};
 });
