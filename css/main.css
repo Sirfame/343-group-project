@@ -16,6 +16,7 @@ nav {
   z-index: 9999;
   background-color: #181c22;
   background-position: top;
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
 ul {
@@ -30,15 +31,13 @@ li {
   font-variant: small-caps;
 }
 
-//.logout {
-	//position: absolute;
-	//right: 10px;
-//}
-
-#logbtn{
-  position: absolute;
-  right: 10px;
-  padding-top: 0px;
+#logbtn {
+	position: absolute;
+	right: 10px;
+  font-size: 16px;
+  padding: 0;
+  padding-right: 6px;
+  padding-left: 6px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,4 +73,23 @@ div#homeContainer {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+div#quizContainer {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.answerResponseCorrect {
+  font-size: 36px;
+  color: green;
+}
+
+.answerResponseIncorrect {
+  font-size: 36px;
+  color: red;
 }
