@@ -72,7 +72,6 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			//$scope.userId = authData.uid;
 			/* call .$save() on the $scope.users object to save to the cloud */
 			$scope.users.$save();
-			$state.go('dashboard', {});
 		})
 
 		//Catch any errors
@@ -80,6 +79,8 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			//error handling (called on the promise)
 			console.log(error);
 		})
+
+		$state.go('dashboard', {});
 	};
 	// End signUp
 
@@ -91,14 +92,12 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 	    	password: $scope.newUser.password
   		})
 
-  		.then(function() {
-  			$state.go('dashboard', {});
-  		})
-
 		//Catch any errors
 		.catch(function(error) {
 			console.log(error);
 		})
+
+		$state.go('dashboard', {});
 	};
 	// End signIn
 
