@@ -217,7 +217,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			};
 
 			scope.nextQuestion = function() {
-				scope.id++;
+				scope.id = quizFactory.returnId() + 1;
 				scope.getQuestion();
 			}
 
@@ -232,150 +232,175 @@ app.factory('quizFactory', function() {
 
 	var questions = [
 		{
+			id: 0,
 			question: "Skunk",
 			options: ["A stinky animal that is black with a white stripe", "A lazy stupid asian bear",  "A big fish"],
 			difficulty: 1,
 			answer: 0
 		},
 		{
+			id: 1,
 			question: "Panda",
 			options: ["A big gray element", "A stinky animal that is black with a white stripe", "A lazy stupid asian bear"],
 			difficulty: 1,
 			answer: 2
 		},
 		{
+			id: 2,
 			question: "Elephant",
 			options: ["A big gray element", "A long gross looking animal", "A big fish"],
 			difficulty: 1,
 			answer: 0
 		},
 		{
+			id: 3,
 			question: "Snake",
 			options: ["A big fish", "A long gross looking animal", "A lazy stupid asian bear"],
 			difficulty: 1,
 			answer: 1
 		},
 		{
+			id: 4,
 			question: "Tuna",
 			options: ["A lazy stupid asian bear", "A big fish", "A big gray element"],
 			difficulty: 1,
 			answer: 1
 		}, //5
 		{
+			id: 5,
 			question: "Trust",
 			options: ["an important question at is in dispute and must be settled", "complete confidence in a person", "some situtation that is thought about"],
 			difficulty: 2,
 			answer: 1
 		},
 		{
+			id: 6,
 			question: "Create",
 			options: ["discuss pros and cons of an issue", "touch lightly and briefly", "make by artistic means"],
 			difficulty: 2,
 			answer: 2
 		},
 		{
+			id: 7,
 			question: "Expected",
 			options: ["dim", "likely", "gracious"],
 			difficulty: 2,
 			answer: 1
 		},
 		{
+			id: 8,
 			question: "Possible",
 			options: ["achieveable", "excellent", "desireable"],
 			difficulty: 2,
 			answer: 0
 		}, 
 		{
+			id: 9,
 			question: "Doubt",
 			options: ["degree of exposure to public notice", "state of surviving", "being unsure"],
 			difficulty: 2,
 			answer: 2
 		}, //10
 		{
+			id: 10,
 			question: "Complete",
 			options: ["bring to a finish or end", "engage in rehearsal", "make bigger"],
 			difficulty: 3,
 			answer: 0
 		},
 		{
+			id: 11,
 			question: "Remark",
 			options: ["obtain", "note", "trade"],
 			difficulty: 3,
 			answer: 1
 		},
 		{
+			id: 12,
 			question: "Success",
 			options: ["an event that accomplishes its intended task", "a dispute", "act of gracious kindness"],
 			difficulty: 3,
 			answer: 0
 		},
 		{
+			id: 13,
 			question: "Command",
 			options: ["act of forcing out someone", "act of acceding to demands", "power to order others"],
 			difficulty: 3,
 			answer: 2
 		},
 		{
+			id: 14,
 			question: "Evident",
 			options: ["acted upon", "clearly revealed to the mind or the senses", "ready and willing or quick to act"],
 			difficulty: 3,
 			answer: 1
 		}, //15
 		{
+			id: 15,
 			question: "Certain",
 			options: ["plain and pretentious", "established irrevocably", "regularly and widely used or sold"],
 			difficulty: 4,
 			answer: 1
 		},
 		{
+			id: 16,
 			question: "Solitary",
 			options: ["single and isolated from others", "not favored by fortune", "conspicuously and outrageously bad"],
 			difficulty: 4,
 			answer: 0
 		},
 		{
+			id: 17,
 			question: "Concern",
 			options: ["direct the course of", "come near in time", "be on the mind of"],
 			difficulty: 4,
 			answer: 2
 		},
 		{
+			id: 18,
 			question: "Surprises",
 			options: ["enlightens ", "cautions", "astonishes"],
 			difficulty: 4,
 			answer: 2
 		},
 		{
+			id: 19,
 			question: "Disbanded",
 			options: ["stopped functioning or cohering as a unit", "gave a performance", "exhanged information or ideas"],
 			difficulty: 4,
 			answer: 0
 		}, //20
 		{
+			id: 20,
 			question: "Attempted",
 			options: ["essayed", "authorized", "experienced"],
 			difficulty: 5,
 			answer: 0
 		},
 		{
+			id: 21,
 			question: "Effect",
 			options: ["an addition to the length of something", "the state of something that has been unused", "a phenomenon that is caused by some previous phenomenon"],
 			difficulty: 5,
 			answer: 2
 		},
 		{
+			id: 22,
 			question: "Mere",
 			options: ["charming", "boring", "simple"],
 			difficulty: 5,
 			answer: 2
 		},
 		{
+			id: 23,
 			question: "Table",
 			options: ["detach", "postpone", "scatter"],
 			difficulty: 5,
 			answer: 1
 		},
 		{
+			id: 24,
 			question: "Grave",
 			options: ["displaying great enthusiasm", "dignified and somber in manner or character", "marked by complexity and richness of detail"],
 			difficulty: 5,
@@ -387,9 +412,12 @@ app.factory('quizFactory', function() {
 		quizDifficulty = difficulty;
 	};
 
+	var scopeId = 0;
+
 	var getQuestion = function(id) {
 		while(id < questions.length) {
 			if(questions[id].difficulty == quizDifficulty) {
+				scopeId = id;
 				return questions[id];
 			} else {
 				id++;
@@ -398,8 +426,13 @@ app.factory('quizFactory', function() {
 		return false;
 	};
 
+	var returnId = function() {
+		return scopeId;
+	}
+
 	return {
 		getQuestion: getQuestion,
-		setDifficulty: setDifficulty
+		setDifficulty: setDifficulty,
+		returnId: returnId
 	};
 });
