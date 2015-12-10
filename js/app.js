@@ -31,12 +31,15 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		})
 })
 
+
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth', '$state', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $state) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth','$location', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $location) {
 
 	/* define reference to your firebase app */
 
+
 	var ref = new Firebase("https://343.firebaseio.com/");
+
 
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
@@ -63,6 +66,14 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		// Once logged in, set and save the user data
 		.then(function(authData) {
 			console.log("logged in");
+
+			var newUserInfo = {
+				'firstname': $scope.newUser.firstname,
+	    		'lastname': $scope.newUser.lastname,
+			};
+
+			$scope.users[authData.uid] = newUserInfo;
+
 			$scope.userId = authData.uid; //save userId
 			$scope.users[authData.uid] = { //set up new information in our users object
 				firstname: $scope.newUser.firstname,
