@@ -38,7 +38,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 	/* define reference to your firebase app */
 
 
-	var ref = new Firebase("https://343.firebaseio.com/");
+	var ref = new Firebase("https://vocabularything.firebaseio.com/");
 
 
 	/* define reference to the "users" value in the app */
@@ -224,9 +224,9 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 app.factory('quizFactory', function() {
 	var questions = [
 		{
-			question: "Which is the largest country in the world by population?",
-			options: ["India", "USA", "China", "Russia"],
-			answer: 2
+			question: "Skunk",
+			options: ["A stinky animal that is black with a white stripe", "A lazy stupid asian bear",  "A big fish"],
+			answer: 0
 		},
 		{
 			question: "When did the second world war end?",
