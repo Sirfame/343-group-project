@@ -1,5 +1,5 @@
 'use-strict';
-
+var progress = 0;
 var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -36,7 +36,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://343.firebaseio.com/");
-	
+
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
 
@@ -168,6 +168,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			scope.reset = function() {
 				scope.inProgress = false;
 				scope.score = 0;
+				progress = 0;
 			}
 
 			scope.getQuestion = function() {
@@ -193,7 +194,8 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 				} else {
 					scope.correctAns = false;
 				}
-
+				progress++;
+				console.log(progress);
 				scope.answerMode = false;
 			};
 
@@ -229,7 +231,7 @@ app.factory('quizFactory', function() {
 			options: ["Atlanta", "Sydney", "Athens", "Beijing"],
 			answer: 0
 		},
-		{	
+		{
 			question: "Who invented telephone?",
 			options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
 			answer: 1

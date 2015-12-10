@@ -1,3 +1,15 @@
+<header ng-show="userId">
+	<nav>
+		<ul>
+			<li><a ui-sref="dashboard"><i class="fa fa-home fa-lg"></i></a></li>
+			<li ng-show="userId"><a ui-sref="dashboard">Dashboard</a></li>
+				<li class="logout" ng-if="userId">
+					<button id="logbtn" ng-click="logOut()" class="btn btn-warning" ui-sref="home">Logout</button>
+				</li>
+		</ul>
+	</nav>
+</header>
+
 <div class="animated fadeIn">
 	<div class="container dashboardLevel" id="dashboardLevel1"> <!-- Level 1 -->
 		<h2>Level 1 - Baby Words</h2>
