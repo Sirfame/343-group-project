@@ -293,7 +293,7 @@ app.factory('quizFactory', function() {
 			options: ["achieveable", "excellent", "desireable"],
 			difficulty: 2,
 			answer: 0
-		}, 
+		},
 		{
 			id: 9,
 			question: "Doubt",
