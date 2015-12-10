@@ -6,6 +6,7 @@
 
 body {
     background-color: #52accc;
+    font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
 nav {
@@ -16,7 +17,7 @@ nav {
   z-index: 9999;
   background-color: #181c22;
   background-position: top;
-  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
 ul {

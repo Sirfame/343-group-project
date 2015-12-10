@@ -33,7 +33,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 
 
 // Controls the homepage and login/signup screens
-.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth','$location', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $location) {
+.controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth','$location', 'quizFactory', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $location, quizFactory) {
 
 	/* define reference to your firebase app */
 
@@ -118,6 +118,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 	   Auth.$unauth(); //"unauthorize" to log out
 	};
 	// End logOut
+
+	$scope.setDifficulty = function(difficulty) {
+		console.log("Setting difficulty to " + difficulty + "!");
+		quizFactory.setDifficulty(difficulty);
+	};
 
 	//Any time auth status updates, set the userId so we know
 	Auth.$onAuth(function(authData) {
@@ -222,41 +227,179 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 });
 
 app.factory('quizFactory', function() {
+
+	var quizDifficulty = 1;
+
 	var questions = [
 		{
 			question: "Skunk",
 			options: ["A stinky animal that is black with a white stripe", "A lazy stupid asian bear",  "A big fish"],
+			difficulty: 1,
 			answer: 0
 		},
 		{
-			question: "When did the second world war end?",
-			options: ["1945", "1939", "1944", "1942"],
+			question: "Panda",
+			options: ["A big gray element", "A stinky animal that is black with a white stripe", "A lazy stupid asian bear"],
+			difficulty: 1,
+			answer: 2
+		},
+		{
+			question: "Elephant",
+			options: ["A big gray element", "A long gross looking animal", "A big fish"],
+			difficulty: 1,
 			answer: 0
 		},
 		{
-			question: "Which was the first country to issue paper currency?",
-			options: ["USA", "France", "Italy", "China"],
-			answer: 3
-		},
-		{
-			question: "Which city hosted the 1996 Summer Olympics?",
-			options: ["Atlanta", "Sydney", "Athens", "Beijing"],
-			answer: 0
-		},
-		{
-			question: "Who invented telephone?",
-			options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
+			question: "Snake",
+			options: ["A big fish", "A long gross looking animal", "A lazy stupid asian bear"],
+			difficulty: 1,
 			answer: 1
-		}
+		},
+		{
+			question: "Tuna",
+			options: ["A lazy stupid asian bear", "A big fish", "A big gray element"],
+			difficulty: 1,
+			answer: 1
+		}, //5
+		{
+			question: "Trust",
+			options: ["an important question at is in dispute and must be settled", "complete confidence in a person", "some situtation that is thought about"],
+			difficulty: 2,
+			answer: 1
+		},
+		{
+			question: "Create",
+			options: ["discuss pros and cons of an issue", "touch lightly and briefly", "make by artistic means"],
+			difficulty: 2,
+			answer: 2
+		},
+		{
+			question: "Expected",
+			options: ["dim", "likely", "gracious"],
+			difficulty: 2,
+			answer: 1
+		},
+		{
+			question: "Possible",
+			options: ["achieveable", "excellent", "desireable"],
+			difficulty: 2,
+			answer: 0
+		}, 
+		{
+			question: "Doubt",
+			options: ["degree of exposure to public notice", "state of surviving", "being unsure"],
+			difficulty: 2,
+			answer: 2
+		}, //10
+		{
+			question: "Complete",
+			options: ["bring to a finish or end", "engage in rehearsal", "make bigger"],
+			difficulty: 3,
+			answer: 0
+		},
+		{
+			question: "Remark",
+			options: ["obtain", "note", "trade"],
+			difficulty: 3,
+			answer: 1
+		},
+		{
+			question: "Success",
+			options: ["an event that accomplishes its intended task", "a dispute", "act of gracious kindness"],
+			difficulty: 3,
+			answer: 0
+		},
+		{
+			question: "Command",
+			options: ["act of forcing out someone", "act of acceding to demands", "power to order others"],
+			difficulty: 3,
+			answer: 2
+		},
+		{
+			question: "Evident",
+			options: ["acted upon", "clearly revealed to the mind or the senses", "ready and willing or quick to act"],
+			difficulty: 3,
+			answer: 1
+		}, //15
+		{
+			question: "Certain",
+			options: ["plain and pretentious", "established irrevocably", "regularly and widely used or sold"],
+			difficulty: 4,
+			answer: 1
+		},
+		{
+			question: "Solitary",
+			options: ["single and isolated from others", "not favored by fortune", "conspicuously and outrageously bad"],
+			difficulty: 4,
+			answer: 0
+		},
+		{
+			question: "Concern",
+			options: ["direct the course of", "come near in time", "be on the mind of"],
+			difficulty: 4,
+			answer: 2
+		},
+		{
+			question: "Surprises",
+			options: ["enlightens ", "cautions", "astonishes"],
+			difficulty: 4,
+			answer: 2
+		},
+		{
+			question: "Disbanded",
+			options: ["stopped functioning or cohering as a unit", "gave a performance", "exhanged information or ideas"],
+			difficulty: 4,
+			answer: 0
+		}, //20
+		{
+			question: "Attempted",
+			options: ["essayed", "authorized", "experienced"],
+			difficulty: 5,
+			answer: 0
+		},
+		{
+			question: "Effect",
+			options: ["an addition to the length of something", "the state of something that has been unused", "a phenomenon that is caused by some previous phenomenon"],
+			difficulty: 5,
+			answer: 2
+		},
+		{
+			question: "Mere",
+			options: ["charming", "boring", "simple"],
+			difficulty: 5,
+			answer: 2
+		},
+		{
+			question: "Table",
+			options: ["detach", "postpone", "scatter"],
+			difficulty: 5,
+			answer: 1
+		},
+		{
+			question: "Grave",
+			options: ["displaying great enthusiasm", "dignified and somber in manner or character", "marked by complexity and richness of detail"],
+			difficulty: 5,
+			answer: 1
+		} //25
 	];
 
-	return {
-		getQuestion: function(id) {
-			if(id < questions.length) {
+	var setDifficulty = function(difficulty) {
+		quizDifficulty = difficulty;
+	};
+
+	var getQuestion = function(id) {
+		while(id < questions.length) {
+			if(questions[id].difficulty == quizDifficulty) {
 				return questions[id];
 			} else {
-				return false;
+				id++;
 			}
 		}
+		return false;
+	};
+
+	return {
+		getQuestion: getQuestion,
+		setDifficulty: setDifficulty
 	};
 });
