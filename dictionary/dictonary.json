@@ -23,105 +23,105 @@
     "word": "Tuna",
     "options": ["A lazy stupid asian bear", "A big fish", "A big gray element"],
     "definition": [1]
-  } //5
+  },
   {
     "word": "Trust",
     "options": ["an important question at is in dispute and must be settled", "complete confidence in a person", "some situtation that is thought about"],
     "definition": [1]
-  }
+  },
   {
     "word": "Create",
     "options": ["discuss pros and cons of an issue", "touch lightly and briefly", "make by artistic means"],
     "definition": [2]
-  }
+  },
   {
     "word": "Expected",
     "options": ["dim", "likely", "gracious"],
     "definition": [1]
-  }
+  },
   {
     "word": "Possible",
     "options": ["achieveable", "excellent", "desireable"],
     "definition": [0]
-  }  
+  },
   {
     "word": "Doubt",
     "options": ["degree of exposure to public notice", "state of surviving", "being unsure"],
     "definition": [2]
-  } //10
+  },
   {
     "word": "Complete",
     "options": ["bring to a finish or end", "engage in rehearsal", "make bigger"],
     "definition": [0]
-  }
+  },
   {
     "word": "Remark",
     "options": ["obtain", "note", "trade"],
     "definition": [1]
-  }
+  },
   {
     "word": "Success",
     "options": ["an event that accomplishes its intended task", "a dispute", "act of gracious kindness"],
     "definition": [0]
-  }
+  },
   {
     "word": "Command",
     "options": ["act of forcing out someone", "act of acceding to demands", "power to order others"],
     "definition": [2]
-  }
+  },
   {
     "word": "Evident",
     "options": ["acted upon", "clearly revealed to the mind or the senses", "ready and willing or quick to act"],
     "definition": [1]
-  } //15
+  },
   {
     "word": "Certain",
     "options": ["plain and pretentious", "established irrevocably", "regularly and widely used or sold"],
     "definition": [1]
-  }
+  },
   {
     "word": "Solitary",
     "options": ["single and isolated from others", "not favored by fortune", "conspicuously and outrageously bad"],
     "definition": [0]
-  }
+  },
   {
     "word": "Concern",
     "options": ["direct the course of", "come near in time", "be on the mind of"],
     "definition": [2]
-  }
+  },
   {
     "word": "Surprises",
     "options": ["enlightens ", "cautions", "astonishes"],
     "definition": [2]
-  }
+  },
   {
     "word": "Disbanded",
     "options": ["stopped functioning or cohering as a unit", "gave a performance", "exhanged information or ideas"],
     "definition": [0]
-  } //20
+  },
   {
     "word": "Attempted",
     "options": ["essayed", "authorized", "experienced"],
     "definition": [0]
-  }
+  },
   {
     "word": "Effect",
     "options": ["an addition to the length of something", "the state of something that has been unused", "a phenomenon that is caused by some previous phenomenon"],
     "definition": [2]
-  }
+  },
   {
     "word": "Mere",
     "options": ["charming", "boring", "simple"],
     "definition": [2]
-  }
+  },
   {
     "word": "Table",
     "options": ["detach", "postpone", "scatter"],
     "definition": [1]
-  }
+  },
   {
     "word": "Grave",
     "options": ["displaying great enthusiasm", "dignified and somber in manner or character", "marked by complexity and richness of detail"],
     "definition": [1]
-  } //25
+  }
 ]}
