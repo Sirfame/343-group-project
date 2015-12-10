@@ -74,3 +74,22 @@ div#homeContainer {
   right: 0;
   margin: auto;
 }
+
+div#quizContainer {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.answerResponseCorrect {
+  font-size: 36px;
+  color: green;
+}
+
+.answerResponseIncorrect {
+  font-size: 36px;
+  color: red;
+}

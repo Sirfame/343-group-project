@@ -9,26 +9,28 @@
 				</label>
 			</li>
 		</ul>
-		<button ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+		<button class="btn btn-warning" ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
 
 		<div ng-show="!answerMode">
-			<button ng-click="nextQuestion()" class="next-question">Next</button>
-			<span ng-show="correctAns">That is correct!</span>
-			<span ng-show="!correctAns">Sorry, that is an incorrect answer.</span>
+			<button class="btn btn-warning" ng-click="nextQuestion()" class="next-question">Next</button>
 		</div>
 	</div>
 
 	<div ng-show="quizOver">
 		<h2>Quiz is over</h2>
-		<button ng-click="reset()">Play again</button>
+		<button class="btn btn-warning" ng-click="reset()">Play again</button>
 	</div>
 
 	<div id="score">
-		Score: {{score}}
+		<strong>Score: {{score}}</strong>
+	</div>
+
+	<div ng-show="!answerMode">
+		<span class="answerResponseCorrect animated fadeIn" ng-show="correctAns"><strong>That is correct!</strong></span>
+		<span class="answerResponseIncorrect animated fadeIn" ng-show="!correctAns"><strong>Sorry, that is an incorrect answer.</strong></span>
 	</div>
 </div>
 
 <div class="intro" ng-show="!inProgress">
-	<p>Welcome to the QuizApp</p>
-	<button id="startQuiz" ng-click="start()">Start the Quiz</button>
+	<button class="btn btn-warning" id="startQuiz" ng-click="start()">Start the Quiz</button>
 </div>
