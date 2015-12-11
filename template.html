@@ -22,7 +22,7 @@
 		<h2>Quiz is over</h2>
 		<h3>Score: {{score/5 * 100}}%</h3>
 		<button class="btn btn-warning" ng-click="reset()">Play again</button>
-		<button class="btn btn-warning" ui-sref="dashboard">Dashboard</button>
+		<button class="btn btn-warning" ng-click="changeProgress()" ui-sref="dashboard">Dashboard</button>
 	</div>
 
 	<div ng-show="!answerMode">

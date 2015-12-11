@@ -1,5 +1,5 @@
 'use-strict';
-var progress = 0;
+var levels = [0,0,0,0,0];
 var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap', 'firebase'])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -41,10 +41,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 .controller('LoginCtrl', ['$scope', '$http', '$firebaseObject','$firebaseArray', '$firebaseAuth','$location', 'quizFactory', function($scope, $http, $firebaseObject,$firebaseArray, $firebaseAuth, $location, quizFactory) {
 
 	/* define reference to your firebase app */
-
-
 	var ref = new Firebase("https://343.firebaseio.com/");
-
 
 	/* define reference to the "users" value in the app */
 	var usersRef = ref.child("users");
@@ -54,6 +51,8 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 
 	//for sign-in
 	$scope.newUser = {};
+
+	$scope.levels = levels;
 
 	/* Authentication */
 	var Auth = $firebaseAuth(ref);
@@ -180,6 +179,13 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		scope: {},
 		templateUrl: 'template.html',
 		link: function(scope, elem, attrs) {
+
+			scope.changeProgress = function() {
+				levels[scope.difficulty - 1] = scope.score;
+				console.log(scope.score);
+				console.log(levels);
+			};
+
 			scope.start = function() {
 				scope.id = 0;
 				scope.quizOver = false;
@@ -198,6 +204,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 				if(q) {
 					scope.question = q.question;
 					scope.options = q.options;
+					scope.difficulty = q.difficulty;
 					scope.answer = q.answer;
 					scope.answerMode = true;
 				} else {
@@ -216,14 +223,13 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 				} else {
 					scope.correctAns = false;
 				}
-				progress++;
-				console.log(progress);
 				scope.answerMode = false;
 			};
 
 			scope.nextQuestion = function() {
 				scope.id = quizFactory.returnId() + 1;
 				scope.getQuestion();
+
 			}
 
 			scope.reset();

@@ -18,7 +18,7 @@
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
 			aria-valuemin="0" aria-valuemax="100" style="width:30%">
-			30% Complete
+			{{levels[0] * 20}}% Mastered
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(1)"><strong>Get Started!</strong></button>
@@ -27,9 +27,9 @@
 	<div class="container dashboardLevel" id="dashboardLevel2"> <!-- Level 2 -->
 		<h2>Level 2 - Getting a bit better</h2>
 		<div class="progress">
-			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
+			aria-valuemin="0" aria-valuemax="100" style="width:50%">
+			{{levels[1] * 20}}% Mastered
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(2)"><strong>Get Started!</strong></button>
@@ -40,7 +40,7 @@
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
 			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			{{levels[2] * 20}}% Mastered
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(3)"><strong>Get Started!</strong></button>
@@ -51,7 +51,7 @@
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
 			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			{{levels[3] * 20}}% Mastered
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(4)"><strong>Get Started!</strong></button>
@@ -62,7 +62,7 @@
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
 			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			{{levels[4] * 20}}% Mastered
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(5)"><strong>Get Started!</strong></button>
