@@ -270,7 +270,7 @@ app.factory('quizFactory', function() {
 			question: "Vegetable",
 			options: ["carrot", "fish", "milk"],
 			difficulty: 1,
-			answer: 1
+			answer: 0
 		}, //5
 		{
 			id: 5,

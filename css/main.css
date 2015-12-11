@@ -45,6 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
+
 #instruction {
   font-style: italic;
   font-size: 18px;
@@ -80,9 +81,13 @@ div#homeContainer {
   right: 0;
 }
 
+#homeSignIn {
+  padding-top: 1em;
+}
+
 div#quizContainer {
   position: absolute;
-  top: 10%;
+  top: 5%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -109,6 +114,31 @@ div#quizContainer {
   text-align: center;
   margin: 0px auto;
 }
+
 .radio{
-  text-align: center;
+  text-align: left;
+}
+
+@media screen and (min-width: 1228px) {
+
+  #title{
+    font-size: 5.5em;
+  }
+
+  h1, title {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  #instruction {
+    font-size: 2em;
+  }
+
+  .radio {
+    font-size: 1.5em;
+  }
+
 }
