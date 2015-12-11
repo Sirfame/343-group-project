@@ -78,7 +78,6 @@ div#homeContainer {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
 }
 
 div#quizContainer {
@@ -98,4 +97,18 @@ div#quizContainer {
 .answerResponseIncorrect {
   font-size: 36px;
   color: red;
+}
+
+#info{
+  font-size: 2em;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.aboutBtn{
+  text-align: center;
+  margin: 0px auto;
+}
+.radio{
+  text-align: center;
 }

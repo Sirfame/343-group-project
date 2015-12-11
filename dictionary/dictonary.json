@@ -1,27 +1,27 @@
 {"dictionary":[
   {
-    "word": "Skunk",
-    "options": ["A stinky animal that is black with a white stripe", "A lazy stupid asian bear",  "A big fish"],
-    "definition": [0]
+    "word": "Insect",
+    "options": ["bug", "fish",  "dog"],
+    "definition": 0
   },
   {
-    "word": "Panda",
-    "options": ["A big gray element", "A stinky animal that is black with a white stripe", "A lazy stupid asian bear"],
-    "definition": [2]
+    "word": "Plant",
+    "options": ["snake", "flower", "bug"],
+    "definition": 1
   },
   {
-    "word": "Elephant",
-    "options": ["A big gray element", "A long gross looking animal", "A big fish"],
-    "definition": [0]
+    "word": "Animal",
+    "options": ["car", "water", "horse"],
+    "definition": 2
   },
   {
-    "word": "Snake",
-    "options": ["A big fish", "A long gross looking animal", "A lazy stupid asian bear"],
-    "definition": [1]
+    "word": "Dinosaur",
+    "options": ["leaf", "t-rex", "tree"],
+    "definition": 1
   },
   {
-    "word": "Tuna",
-    "options": ["A lazy stupid asian bear", "A big fish", "A big gray element"],
+    "word": "Vegetable",
+    "options": ["carrot", "fish", "milk"],
     "definition": [1]
   },
   {
@@ -123,5 +123,10 @@
     "word": "Grave",
     "options": ["displaying great enthusiasm", "dignified and somber in manner or character", "marked by complexity and richness of detail"],
     "definition": [1]
+  }
+  {
+    "word": "Fancy",
+    "options": ["alluring", "modern", "adorned"],
+    "definition": [2]
   }
 ]}

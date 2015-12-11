@@ -19,6 +19,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			templateUrl: 'partials/signUp.html',
 			controller: 'LoginCtrl'
 		})
+		.state('learnMore', {
+			url: '/',
+			templateUrl: 'partials/learnMore.html',
+			controller: 'LoginCtrl'
+		})
 		.state('dashboard', {
 			url: '/dashboard',
 			templateUrl: 'partials/dashboard.html',
@@ -231,38 +236,39 @@ app.factory('quizFactory', function() {
 	var quizDifficulty = 1;
 
 	var questions = [
+
 		{
 			id: 0,
-			question: "Skunk",
-			options: ["A stinky animal that is black with a white stripe", "A lazy stupid asian bear",  "A big fish"],
+			question: "Insect",
+			options: ["bug", "fish",  "dog"],
 			difficulty: 1,
 			answer: 0
 		},
 		{
 			id: 1,
-			question: "Panda",
-			options: ["A big gray element", "A stinky animal that is black with a white stripe", "A lazy stupid asian bear"],
+			question: "Plant",
+			options: ["snake", "flower", "bug"],
+			difficulty: 1,
+			answer: 1
+		},
+		{
+			id: 2,
+			question: "Animal",
+			options: ["car", "water", "horse"],
 			difficulty: 1,
 			answer: 2
 		},
 		{
-			id: 2,
-			question: "Elephant",
-			options: ["A big gray element", "A long gross looking animal", "A big fish"],
-			difficulty: 1,
-			answer: 0
-		},
-		{
 			id: 3,
-			question: "Snake",
-			options: ["A big fish", "A long gross looking animal", "A lazy stupid asian bear"],
+			question: "Dinosaur",
+			options: ["leaf", "t-rex", "tree"],
 			difficulty: 1,
 			answer: 1
 		},
 		{
 			id: 4,
-			question: "Tuna",
-			options: ["A lazy stupid asian bear", "A big fish", "A big gray element"],
+			question: "Vegetable",
+			options: ["carrot", "fish", "milk"],
 			difficulty: 1,
 			answer: 1
 		}, //5
@@ -405,6 +411,13 @@ app.factory('quizFactory', function() {
 			options: ["displaying great enthusiasm", "dignified and somber in manner or character", "marked by complexity and richness of detail"],
 			difficulty: 5,
 			answer: 1
+		},
+		{
+			id: 25,
+			question: "Fancy",
+			options: ["alluring", "modern", "adorned"],
+			difficulty: 5,
+			answer: 2
 		} //25
 	];
 
