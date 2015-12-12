@@ -94,6 +94,10 @@ div#quizContainer {
   margin: auto;
 }
 
+.progress-bar {
+  color: black;
+}
+
 .answerResponseCorrect {
   font-size: 36px;
   color: green;
