@@ -43,7 +43,7 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 	/* define reference to your firebase app */
 
 
-	var ref = new Firebase("https://343.firebaseio.com/");
+	var ref = new Firebase("https://343-group-project.firebaseio.com/");
 
 
 	/* define reference to the "users" value in the app */
@@ -75,6 +75,11 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			var newUserInfo = {
 				'firstname': $scope.newUser.firstname,
 	    		'lastname': $scope.newUser.lastname,
+	    		'levelOneScore': 0,
+	    		'levelTwoScore': 0,
+	    		'levelThreeScore': 0,
+	    		'levelFourScore': 0,
+	    		'levelFiveScore': 0
 			};
 
 			$scope.users[authData.uid] = newUserInfo;
@@ -82,7 +87,12 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			$scope.userId = authData.uid; //save userId
 			$scope.users[authData.uid] = { //set up new information in our users object
 				firstname: $scope.newUser.firstname,
-	    	lastname: $scope.newUser.lastname,
+	    		lastname: $scope.newUser.lastname,
+	    		levelOneScore: 0,
+	    		levelTwoScore: 0,
+	    		levelThreeScore: 0,
+	    		levelFourScore: 0,
+	    		levelFiveScore: 0
 			}
 			//$scope.users[authData.uid] = newUserInfo;
 			/* assign authData.uid to $scope.userId for our views to see */
@@ -96,8 +106,6 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 			//error handling (called on the promise)
 			console.log(error);
 		})
-
-		$state.go('dashboard', {});
 	};
 	// End signUp
 
@@ -113,8 +121,6 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 		.catch(function(error) {
 			console.log(error);
 		})
-
-		$state.go('dashboard', {});
 	};
 	// End signIn
 
@@ -174,12 +180,21 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
     };
 })
 
-.directive('quiz', function(quizFactory) {
+.directive('quiz', ['quizFactory', '$firebaseObject','$firebaseArray', '$firebaseAuth', function(quizFactory, $firebaseObject, $firebaseArray, $firebaseAuth) {
+
 	return {
 		restrict: 'AE',
 		scope: {},
 		templateUrl: 'template.html',
 		link: function(scope, elem, attrs) {
+			var ref = new Firebase("https://343-group-project.firebaseio.com/");
+
+			/* define reference to the "users" value in the app */
+			var usersRef = ref.child("users");
+
+			/* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
+			scope.users = $firebaseObject(usersRef);
+
 			scope.start = function() {
 				scope.id = 0;
 				scope.quizOver = false;
@@ -226,17 +241,42 @@ var app = angular.module('VocabApp', ['ngSanitize', 'ui.router', 'ui.bootstrap',
 				scope.getQuestion();
 			}
 
+			scope.saveScore = function() {
+				var authData = ref.getAuth();
+				var quizDifficulty = quizFactory.getDifficulty();
+				console.log(quizDifficulty);
+				if (quizDifficulty == 1) {
+
+					scope.users[authData.uid].levelOneScore = scope.score;
+
+				} else if (quizDifficulty == 2) {
+
+					scope.users[authData.uid].levelTwoScore = scope.score;
+
+				} else if (quizDifficulty == 3) {
+
+					scope.users[authData.uid].levelThreeScore = scope.score;
+
+				} else if (quizDifficulty == 4) {
+
+					scope.users[authData.uid].levelFourScore = scope.score;
+
+				} else {
+					scope.users[authData.uid].levelFiveScore = scope.score;
+				}
+				scope.users.$save();
+			}
+
 			scope.reset();
 		}
 	}
-});
+}]);
 
 app.factory('quizFactory', function() {
 
 	var quizDifficulty = 1;
 
 	var questions = [
-
 		{
 			id: 0,
 			question: "Insect",
@@ -425,6 +465,10 @@ app.factory('quizFactory', function() {
 		quizDifficulty = difficulty;
 	};
 
+	var getDifficulty = function() {
+		return quizDifficulty;
+	};
+
 	var scopeId = 0;
 
 	var getQuestion = function(id) {
@@ -446,6 +490,7 @@ app.factory('quizFactory', function() {
 	return {
 		getQuestion: getQuestion,
 		setDifficulty: setDifficulty,
+		getDifficulty: getDifficulty,
 		returnId: returnId
 	};
 });

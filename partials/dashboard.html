@@ -17,8 +17,8 @@
 		<h2>Level 1 - Baby Words</h2>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:30%">
-			30% Complete
+			aria-valuemin="0" aria-valuemax="100" style="width:{{users[userId].levelOneScore/5 * 100}}%">
+			{{users[userId].levelOneScore/5 * 100}}% Correct
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(1)"><strong>Get Started!</strong></button>
@@ -28,8 +28,8 @@
 		<h2>Level 2 - Getting a bit better</h2>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			aria-valuemin="0" aria-valuemax="100" style="width:{{users[userId].levelTwoScore/5 * 100}}%">
+			{{users[userId].levelTwoScore/5 * 100}}% Correct
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(2)"><strong>Get Started!</strong></button>
@@ -39,8 +39,8 @@
 		<h2>Level 3 - Advanced</h2>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			aria-valuemin="0" aria-valuemax="100" style="width:{{users[userId].levelThreeScore/5 * 100}}%">
+			{{users[userId].levelThreeScore/5 * 100}}% Correct
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(3)"><strong>Get Started!</strong></button>
@@ -50,8 +50,8 @@
 		<h2>Level 4 - Scholar Vocabularist</h2>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			aria-valuemin="0" aria-valuemax="100" style="width:{{users[userId].levelFourScore/5 * 100}}%">
+			{{users[userId].levelFourScore/5 * 100}}% Correct
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(4)"><strong>Get Started!</strong></button>
@@ -61,8 +61,8 @@
 		<h2>Level 5 - Big Boy Words</h2>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-			aria-valuemin="0" aria-valuemax="100" style="width:40%">
-			40% Complete
+			aria-valuemin="0" aria-valuemax="100" style="width:{{users[userId].levelFiveScore/5 * 100}}%">
+			{{users[userId].levelFiveScore/5 * 100}}% Correct
 			</div>
 		</div>
 		<button class="btn btn-danger span7" ui-sref="quiz" ng-click="setDifficulty(5)"><strong>Get Started!</strong></button>

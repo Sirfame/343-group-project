@@ -21,8 +21,9 @@
 	<div ng-show="quizOver">
 		<h2>Quiz is over</h2>
 		<h3>Score: {{score/5 * 100}}%</h3>
-		<button class="btn btn-warning" ng-click="reset()">Play again</button>
+		<button class="btn btn-warning" ng-click="reset()">Play Again</button>
 		<button class="btn btn-warning" ui-sref="dashboard">Dashboard</button>
+		<button class="btn btn-warning" ng-click="saveScore()">Save Score</button>
 	</div>
 
 	<div ng-show="!answerMode">
